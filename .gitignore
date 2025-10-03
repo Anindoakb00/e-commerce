@@ -46,3 +46,7 @@ coverage/
 # ---- Misc ----
 .vercel/
 *.pem
+
+# ---- Docs ----
+# Exclude all markdown files from the repository
+*.md
