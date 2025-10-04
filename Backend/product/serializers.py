@@ -8,7 +8,17 @@ from .models import (
 from rest_framework import serializers
 
 class ProductImageSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField()
+    image = serializers.SerializerMethodField()
+
+    def get_image(self, obj):
+        try:
+            if obj.image:
+                return obj.image.url
+        except Exception:
+            # If storage is unavailable or file missing, return None gracefully
+            return None
+        return None
+
     class Meta:
         model = ProductImage
         fields = ['id', 'image']

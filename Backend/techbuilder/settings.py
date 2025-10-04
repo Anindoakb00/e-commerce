@@ -164,10 +164,17 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'productionfiles'
 
 # WhiteNoise static files storage (Django 5+ STORAGES setting)
+# IMPORTANT: When defining STORAGES, provide BOTH 'default' and 'staticfiles'.
 STORAGES = {
+    # Default storage for user-uploaded/media files
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        # Uses MEDIA_ROOT / MEDIA_URL implicitly
+    },
+    # Storage backend used by collectstatic for serving static files
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    }
+    },
 }
 
 # Default primary key field type
