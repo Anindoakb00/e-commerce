@@ -208,6 +208,10 @@ DJOSER = {
     # For password reset emails: djoser will build a link as
     # {FRONTEND_ORIGIN}/{url}?uid={uid}&token={token}
     'PASSWORD_RESET_CONFIRM_URL': 'auth/reset-password-confirm?uid={uid}&token={token}',
+    'SERIALIZERS': {
+        'user_create': 'core.auth_serializers.CustomUserCreateSerializer',
+        # leave others as default
+    },
 }
 
 # CORS settings for frontend connection
