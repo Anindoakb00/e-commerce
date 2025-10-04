@@ -4,6 +4,7 @@ import { Toaster } from "sonner"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import { ThemeProvider } from "@/components/theme-provider";
+import ChatWidget from "@/components/ChatWidget";
 
 // Removed next/font usage to avoid CSS pipeline triggering native lightningcss on Vercel
 
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="flex-1">{children}</main>
           <Footer />
           <Toaster />
+          <ChatWidget />
         </ThemeProvider>
       </body>
     </html>
