@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useAuthStore } from '@/store/authStore'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-export default function LoginPage() {
+function LoginInner() {
   const login = useAuthStore(s=>s.login)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -35,5 +35,13 @@ export default function LoginPage() {
       </div>
       <p className="mt-4 text-sm text-muted-foreground">No account? <a className="text-blue-600" href={`/register?next=${encodeURIComponent(next)}`}>Register</a></p>
     </div>
+  )
+}
+
+export default function LoginPage(){
+  return (
+    <Suspense>
+      <LoginInner />
+    </Suspense>
   )
 }

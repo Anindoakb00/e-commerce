@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useAuthStore } from '@/store/authStore'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-export default function RegisterPage() {
+function RegisterInner() {
   const register = useAuthStore(s=>s.register)
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
@@ -37,5 +37,13 @@ export default function RegisterPage() {
       </div>
       <p className="mt-4 text-sm text-muted-foreground">Already have an account? <a className="text-blue-600" href={`/login?next=${encodeURIComponent(next)}`}>Login</a></p>
     </div>
+  )
+}
+
+export default function RegisterPage(){
+  return (
+    <Suspense>
+      <RegisterInner />
+    </Suspense>
   )
 }

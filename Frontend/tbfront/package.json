@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "LIGHTNINGCSS_FORCE_WASM=1 next dev",
-    "build": "LIGHTNINGCSS_FORCE_WASM=1 next build",
+    "dev": "cross-env LIGHTNINGCSS_FORCE_WASM=1 next dev",
+    "build": "cross-env LIGHTNINGCSS_FORCE_WASM=1 next build",
     "start": "next start",
     "lint": "eslint"
   },
@@ -42,6 +42,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
     "tailwindcss": "^4",

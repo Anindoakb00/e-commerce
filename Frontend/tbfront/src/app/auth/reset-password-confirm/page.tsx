@@ -1,13 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { API_BASE } from "@/lib/config"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 
-export default function ResetPasswordConfirmPage(){
+function ResetPasswordConfirmInner(){
   const params = useSearchParams()
   const router = useRouter()
   const uid = params.get('uid') || ''
@@ -46,5 +46,13 @@ export default function ResetPasswordConfirmPage(){
         <Button type="submit" className="w-full">Change password</Button>
       </form>
     </div>
+  )
+}
+
+export default function ResetPasswordConfirmPage(){
+  return (
+    <Suspense>
+      <ResetPasswordConfirmInner />
+    </Suspense>
   )
 }
