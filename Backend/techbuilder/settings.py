@@ -221,6 +221,13 @@ CORS_ALLOWED_ORIGINS = [
 # Add any additional frontend URLs from environment
 if os.getenv('FRONTEND_URL'):
     CORS_ALLOWED_ORIGINS.append(os.getenv('FRONTEND_URL'))
+if os.getenv('FRONTEND_ORIGIN'):
+    CORS_ALLOWED_ORIGINS.append(os.getenv('FRONTEND_ORIGIN'))
+
+# Allow Vercel preview/prod domains (any subdomain of vercel.app)
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\\.vercel\\.app$",
+]
 
 CORS_ALLOW_CREDENTIALS = True
 # Allow custom headers used by frontend/Stripe and expose auth for debugging
