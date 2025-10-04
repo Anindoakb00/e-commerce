@@ -1,4 +1,8 @@
 import type { NextConfig } from "next";
+// Hard-set env flags as early as possible so any CSS tooling sees them
+process.env.NEXT_DISABLE_LIGHTNINGCSS = process.env.NEXT_DISABLE_LIGHTNINGCSS || '1'
+process.env.TAILWIND_DISABLE_OXIDE = process.env.TAILWIND_DISABLE_OXIDE || '1'
+process.env.LIGHTNINGCSS_FORCE_WASM = process.env.LIGHTNINGCSS_FORCE_WASM || '1'
 
 const nextConfig: NextConfig = {
   // Allow production builds to succeed despite ESLint/TS issues.
