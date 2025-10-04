@@ -22,8 +22,10 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
-# Media files
-media/
+# Media files (ignore all except demo product_images so they can be deployed)
+media/*
+!media/product_images/
+!media/product_images/**
 
 # Static files (if not using whitenoise)
 staticfiles/
