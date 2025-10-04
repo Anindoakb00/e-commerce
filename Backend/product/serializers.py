@@ -12,12 +12,21 @@ class ProductImageSerializer(serializers.ModelSerializer):
 
     def get_image(self, obj):
         try:
-            if obj.image:
-                return obj.image.url
+            url = getattr(obj.image, 'url', None)
+            if not url:
+                return None
+            # If DRF provides request in context, build absolute URL
+            request = self.context.get('request') if hasattr(self, 'context') else None
+            if request is not None:
+                try:
+                    return request.build_absolute_uri(url)
+                except Exception:
+                    pass
+            # Fallback: relative URL is fine
+            return url
         except Exception:
             # If storage is unavailable or file missing, return None gracefully
             return None
-        return None
 
     class Meta:
         model = ProductImage

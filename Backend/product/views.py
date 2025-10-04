@@ -60,6 +60,12 @@ class ProductViewSet(viewsets.ModelViewSet):
             return ProductDetailViewSerializer
         return ProductListViewSerializer
 
+    def get_serializer_context(self):
+        # Ensure request is available to serializers for absolute media URLs
+        ctx = super().get_serializer_context()
+        ctx['request'] = self.request
+        return ctx
+
     @action(detail=False, url_path=r'by-slug/(?P<slug>[^/.]+)', methods=['get'], permission_classes=[AllowAny])
     def by_slug(self, request, slug=None):
         try:
